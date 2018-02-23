@@ -1,5 +1,6 @@
 package nickleby.algorithms.utils;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -9,7 +10,19 @@ public class PrintUtil {
         System.out.println("[" + Stream.of(array).map(Object::toString).collect(Collectors.joining(", ")) + "]");
     }
 
-    public static void printMultiDimensionArray(Object[][] arrays) {
+    public static void print2dArray(Object[][] arrays) {
         Stream.of(arrays).forEach(PrintUtil::printArray);
+    }
+
+    public static void print2dArray(List<? extends Object[]> arrays) {
+        arrays.forEach(PrintUtil::printArray);
+    }
+
+    public static void printList(List<? extends Object> list) {
+        System.out.println("[" + list.stream().map(Object::toString).collect(Collectors.joining(", ")) + "]");
+    }
+
+    public static void print2dList(List<List<Integer>> lists) {
+        lists.forEach(PrintUtil::printList);
     }
 }
