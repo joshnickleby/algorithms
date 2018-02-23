@@ -10,6 +10,6 @@ public class Executor {
     public static LambdaVariable lambdaVariable = new LambdaVariable();
 
     public static void run() {
-        System.out.println("Hello");
+        boxBlur.run();
     }
 }

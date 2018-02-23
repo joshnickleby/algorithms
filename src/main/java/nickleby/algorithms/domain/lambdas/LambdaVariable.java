@@ -7,7 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LambdaVariable {
+public class LambdaVariable implements Runnable {
 
     final static String FG_RED = (char)27 + "[31m";
     final static String FG_GREEN = (char)27 + "[32m";
@@ -31,8 +31,10 @@ public class LambdaVariable {
         sharedRoutine(function,"1234567890", "11223344556677889900");
     }
 
-    /** make these pass by only changing the function variable within main **/
-    public static void main(String[] args) {
+
+    /** make these pass by only changing the function variable within main -- ANSWER **/
+    @Override
+    public void run() {
         //change this to reverse the string
         Function<String, String> function = (s) -> {
             List<String> split = Arrays.asList(s.split(""));

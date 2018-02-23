@@ -1,5 +1,7 @@
 package nickleby.algorithms.domain;
 
+import nickleby.algorithms.utils.PrintUtil;
+
 /**
  * Last night you partied a little too hard. Now there's a black and white photo of you that's about to go viral!
  * You can't let this ruin your reputation, so you want to apply the box blur algorithm to the photo to hide its content.
@@ -10,7 +12,7 @@ package nickleby.algorithms.domain;
  *
  * Return the blurred image as an integer, with the fractions rounded down.
  */
-public class BoxBlur {
+public class BoxBlur implements Runnable {
 
     private final static Integer[][] TEST_1 = {{1, 1, 1},
                                                {1, 7, 1},
@@ -26,9 +28,15 @@ public class BoxBlur {
     private final static Integer[][] EXPECTED_2 = {{5, 4},
                                                    {4, 4}};
 
+    private void doThing(Integer[][] test) {
+        int compression = test.length - 2;
+        Integer[][] result = new Integer[compression][compression];
 
+        PrintUtil.printMultiDimensionArray(test);
+    }
 
-    public static void main(String[] args) {
-
+    @Override
+    public void run() {
+        doThing(TEST_1);
     }
 }
