@@ -71,9 +71,7 @@ public class Minesweeper implements Runnable {
             Boolean[] row = matrix[x];
 
             for(int y = left; y < right; y++) {
-                if(row[y]) {
-                    matrixMap.addAround(x+1, y+1);
-                }
+                if(row[y]) { matrixMap.addAround(x+1, y+1); }
             }
         }
 
@@ -82,27 +80,6 @@ public class Minesweeper implements Runnable {
                 fin[x][y] = (Integer) matrixMap.get(x+1).get(y+1);
             }
         }
-
-//        Boolean[] row = matrix[0];
-//
-//        if(row[0]) {
-//            matrixMap.get(0).put(1, matrixMap.get(0).get(1) + 1);
-//            matrixMap.get(1).put(0, matrixMap.get(1).get(0) + 1);
-//            matrixMap.get(1).put(1, matrixMap.get(1).get(1) + 1);
-//        }
-//
-//        row = matrix[1];
-//
-//        if(row[1]) {
-//            matrixMap.get(0).put(0, matrixMap.get(0).get(0) + 1);
-//            matrixMap.get(0).put(1, matrixMap.get(0).get(1) + 1);
-//            matrixMap.get(0).put(2, matrixMap.get(0).get(2) + 1);
-//            matrixMap.get(1).put(0, matrixMap.get(1).get(0) + 1);
-//            matrixMap.get(1).put(2, matrixMap.get(1).get(2) + 1);
-//            matrixMap.get(2).put(0, matrixMap.get(2).get(0) + 1);
-//            matrixMap.get(2).put(1, matrixMap.get(2).get(1) + 1);
-//            matrixMap.get(2).put(2, matrixMap.get(2).get(2) + 1);
-//        }
 
         PrintUtil.printMap(matrixMap);
         PrintUtil.print2dArray(fin);
