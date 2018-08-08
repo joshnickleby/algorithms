@@ -1,7 +1,5 @@
 package nickleby.algorithms.kotlin.domain
 
-import java.util.*
-
 object Battleship {
 
   private class PlayBoard(shipLocations: String, shots: String) {
@@ -22,7 +20,7 @@ object Battleship {
         }
       }
 
-      return sunk.toString() + "," + hit
+      return "$sunk, $hit"
     }
   }
 
@@ -51,27 +49,34 @@ object Battleship {
     val isHit:  Boolean get() = dimensions.values.map(extractHit).orReduce()
 
     init {
-      val positions = coordinateString.split(" ".toRegex())
+      val coordinates = coordinateString.split(" ").map {Coordinate(it.split("".toRegex()))}
 
-      val coordinates = positions.map {Coordinate(it.split("".toRegex()))}
+      if (coordinates.size == 1)
+        mapSingleCoordinates(coordinates)
+      else
+        mapMultipleCoordinates(coordinates)
+    }
 
-      val columns = coordinates.map({it.x}).toHashSet()
+    fun mapSingleCoordinates(coordinates: List<Coordinate>) {
+      dimensions = (coordinates[0].x until coordinates[1].x+1).map({selectedX ->
+        val selectedY = coordinates[0].y
+        val xy = selectedX.toString() + selectedY
+        xy to Tile(selectedY, selectedX)
+      }).toMutableMap()
+    }
 
-      if (columns.size == 1) {
-        dimensions = (coordinates[0].x until coordinates[1].x+1).map({selectedX ->
-          val selectedY = coordinates[0].y
-          val xy = selectedX.toString() + selectedY
-          xy to Tile(selectedY, selectedX)
-        }).toMutableMap()
+    fun mapMultipleCoordinates(coordinates: List<Coordinate>) {
+      val (first, last) = Pair(coordinates[0], coordinates[1])
 
-      } else {
-        // first and last
-        val (zuerst, letzte) = Pair(coordinates[0], coordinates[1])
-        dimensions[zuerst.x.toString() + zuerst.y] = Tile(zuerst.y, zuerst.x)
-        dimensions[letzte.x.toString() + letzte.y] = Tile(letzte.y, letzte.x)
-        dimensions[zuerst.x.toString() + letzte.y] = Tile(letzte.y, zuerst.x)
-        dimensions[letzte.x.toString() + zuerst.y] = Tile(zuerst.y, letzte.x)
-      }
+      listOf(first, last).forEach {addDimension(it)}
+      listOf(Pair(first, last), Pair(last, first)).forEach { addDimension(it.first, it.second); }
+    }
+
+    fun addDimension(vararg coordinates: Coordinate) {
+      val first = coordinates[0]
+      val last = if (coordinates.size == 1) coordinates[0] else coordinates[1]
+
+      dimensions["${first.x}${last.y}"] = Tile(last.y, last.x)
     }
 
     fun checkHit(shots: String): Ship {
