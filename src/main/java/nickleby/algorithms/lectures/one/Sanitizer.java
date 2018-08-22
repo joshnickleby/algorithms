@@ -1,6 +1,5 @@
 package nickleby.algorithms.lectures.one;
 
-import java.lang.reflect.Constructor;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -13,10 +12,17 @@ public abstract class Sanitizer {
     }
 
     protected String sanitize(String field, String item) {
+        logError(field, item);
         return Objects.isNull(item) ? "" : item;
     }
 
     protected Integer sanitize(String field, Integer item) {
         return Objects.isNull(item) ? -1 : item;
+    }
+
+    private <T> void logError(String field, T item) {
+        if(Objects.isNull(item)) {
+            System.out.println(id + " " + field + " is NULL");
+        }
     }
 }

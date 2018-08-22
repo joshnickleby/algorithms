@@ -11,19 +11,23 @@
             * default breathe
             * giveBirth
             * move
+            * default setDifferences
+        * Show templating
         * Mammal - default giveBirth
         * Reptile - default giveBirth
         * Fish - default giveBirth
         * Marsupial - default giveBirth
 3. Objects
+    * Foodsource enum
     * Bear
     * Rabbit
     * Turtle
     * Snake
     * Shark
     * Kangaroo
-4. Lambda examples
-5. CustomList example with lambda usage
+4. Make an environment    
+5. Lambda examples
+6. CustomList example with lambda usage
     * Filter
     * List
     * Map
