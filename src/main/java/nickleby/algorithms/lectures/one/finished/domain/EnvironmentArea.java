@@ -22,6 +22,11 @@ public abstract class EnvironmentArea<U, T> implements Geosphere {
         this.animals = Stream.of(definedAnimals).map(Creature.class::cast).collect(Collectors.toList());
     }
 
+    protected EnvironmentArea(Class<U> tClass, List<T> definedAnimals) {
+        this(tClass);
+        this.animals = definedAnimals.stream().map(Creature.class::cast).collect(Collectors.toList());
+    }
+
     @Override
     public void watch() {
         System.out.println("[!] Watching animals in the " + tClass.getSimpleName());

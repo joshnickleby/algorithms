@@ -26,7 +26,7 @@ public class Snake extends Animal implements Reptile, LandBased, WaterBased {
     }
 
     public void setDifferences() {
-        this.numberOfLegs(0);
-        this.skinType("Scales");
+        super.numberOfLegs(0);
+        super.skinType("Scales");
     }
 }

@@ -25,6 +25,6 @@ public class Turtle extends Animal implements Reptile, LandBased, WaterBased {
 
     @Override
     public void setDifferences() {
-        this.skinType("Shell and scales");
+        super.skinType("Shell and scales");
     }
 }

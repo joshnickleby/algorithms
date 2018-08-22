@@ -11,10 +11,12 @@ public class Shark extends Animal implements Fish, WaterBased {
 
     public Shark() {
         super(UUID.randomUUID());
+        setDifferences();
     }
 
     public Shark(String type) {
         super(UUID.randomUUID(), type, FoodSource.CARNIVORE.toString());
+        setDifferences();
     }
 
     @Override
@@ -24,7 +26,7 @@ public class Shark extends Animal implements Fish, WaterBased {
 
     @Override
     public void setDifferences() {
-        this.numberOfLegs(0);
-        this.skinType("Scales");
+        super.numberOfLegs(0);
+        super.skinType("Scales");
     }
 }
