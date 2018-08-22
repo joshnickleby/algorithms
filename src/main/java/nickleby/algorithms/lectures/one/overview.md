@@ -1,6 +1,6 @@
 
 1. Create an abstract class
-    * Animal
+    * Animal < Sanitize Class
         * numberOfLegs
         * skinType
         * type
