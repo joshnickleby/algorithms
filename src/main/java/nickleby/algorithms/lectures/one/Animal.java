@@ -44,11 +44,19 @@ public abstract class Animal extends Sanitizer {
 
 
     //region GETTERS
-
+    public UUID id() { return id; }
+    public String type() { return sanitize("type", type); }
+    public String foodSource() { return sanitize("foodSource", foodSource); }
+    public Integer numberOfLegs() { return sanitize("numberOfLegs", numberOfLegs); }
+    public String skinType() { return sanitize("skinType", skinType); }
     //endregion GETTERS
 
 
     //region SETTERS
-
+    public Animal id(UUID id) { this.id = id; return this; }
+    public Animal type(String type) { this.type = type; return this; }
+    public Animal foodSource(String foodSource) { this.foodSource = foodSource; return this; }
+    public Animal numberOfLegs(Integer numberOfLegs) { this.numberOfLegs = numberOfLegs; return this; }
+    public Animal skinType(String skinType) { this.skinType = skinType; return this; }
     //endregion SETTERS
 }
