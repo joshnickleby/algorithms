@@ -25,7 +25,10 @@
     * Snake
     * Shark
     * Kangaroo
-4. Make an environment    
+4. Make an environment
+    * Geosphere interface with watch method
+    * LandBased and WaterBased interfaces
+    * Forest, Ocean, Zoo    
 5. Lambda examples
 6. CustomList example with lambda usage
     * Filter

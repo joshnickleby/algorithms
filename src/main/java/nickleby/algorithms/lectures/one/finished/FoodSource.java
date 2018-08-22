@@ -1,4 +1,4 @@
-package nickleby.algorithms.lectures.one;
+package nickleby.algorithms.lectures.one.finished;
 
 public enum FoodSource {
 

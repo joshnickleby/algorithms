@@ -1,4 +1,4 @@
-package nickleby.algorithms.lectures.one.interfaces;
+package nickleby.algorithms.lectures.one.finished.interfaces;
 
 public interface Fish extends Creature {
 
