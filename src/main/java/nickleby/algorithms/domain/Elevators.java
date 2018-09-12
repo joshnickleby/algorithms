@@ -1,8 +1,6 @@
 package nickleby.algorithms.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
 
@@ -12,41 +10,44 @@ public class Elevators {
     private static final Integer[] floors = {3, 3, 2, 2, 3};
 
     private static class Elevator {
-        public Integer capacity;
-        public Integer maxWeight;
-        public List<Integer> weights = new ArrayList<>();
-        public Integer tempWeight = 0;
-        public Integer tempCapacity = 0;
-        public Set<Integer> floors = new HashSet<>();
-        public Integer count = 0;
+        final Integer capacity;
+        final Integer maxWeight;
+        Integer currentWeight = 0;
+        Integer currentCapacity = 0;
+        Set<Integer> floors = new HashSet<>();
+        Integer count = 0;
 
-        public Elevator(Integer capacity, Integer maxWeight) {
+        Elevator(Integer capacity, Integer maxWeight) {
             this.capacity = capacity;
             this.maxWeight = maxWeight;
         }
 
-        public Elevator enter(Integer weight, Integer floor) {
-            if(capacity < tempCapacity + 1 || maxWeight < tempWeight + weight) {
-               finish();
-            }
+        boolean isFull() { return capacity < currentCapacity + 1; }
 
-            weights.add(weight);
+        private boolean overWeight(Integer weight) {
+            return maxWeight < currentWeight + weight;
+        }
+
+        void enter(Integer weight, Integer floor) {
+            if(isFull() || overWeight(weight)) { dropOffOccupants(); }
+
+            addOccupant(weight, floor);
+        }
+
+        void addOccupant(Integer weight, Integer floor) {
             floors.add(floor);
-            tempCapacity++;
-            tempWeight += weight;
-
-            return this;
+            currentCapacity++;
+            currentWeight += weight;
         }
 
-        public Elevator finish() {
+        void dropOffOccupants() {
             count += floors.size() + 1;
-            weights = new ArrayList<>();
             floors = new HashSet<>();
-            tempWeight = 0;
-            tempCapacity = 0;
-
-            return this;
+            currentWeight = 0;
+            currentCapacity = 0;
         }
+
+        void finish() { this.dropOffOccupants(); }
     }
 
     public static void main(String[] args) {
